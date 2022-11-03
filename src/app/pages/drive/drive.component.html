@@ -1,0 +1,46 @@
+<div class="col-lg-12 p-0 mt-2">
+  <div class="d-flex justify-content-between">
+    <div class="d-flex align-items-center">
+      <button class="btn btn-primary" routerLink="/users">
+        <i class="bi bi-arrow-left pe-2"></i> Back To Users
+      </button>
+    </div>
+  </div>
+  <div class="mt-2">
+    <h3>Drive</h3>
+  </div>
+  <div class="mt-2">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Owner</th>
+        <th scope="col">Last Modifying User</th>
+        <th scope="col">Last Modifying Date</th>
+        <th scope="col">Created Date</th>
+        <th scope="col">Type</th>
+      </tr>
+      </thead>
+      <tbody *ngIf="!driveData.showLoader">
+      <tr *ngFor="let driveObj of driveData.data">
+        <td>
+          <div class="col-lg-12">
+            <i class="bi bi-folder pe-2" *ngIf="driveObj.type === 'folder'"></i>
+            <i class="bi pe-2 bi-file-earmark-{{driveObj.type}}" *ngIf="driveObj.type !== 'folder'"></i>
+            <span>{{driveObj.name}}</span>
+          </div>
+        </td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>{{driveObj.type}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-center" *ngIf="driveData.showLoader">
+      <app-loader></app-loader>
+    </div>
+  </div>
+</div>
+

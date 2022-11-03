@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-between mt-2">
+  <div>
+    <h3>Users</h3>
+  </div>
+  <div>
+    <button class="btn btn-primary">
+      <i class="bi bi-person-plus"></i>
+      Add New User
+    </button>
+  </div>
+</div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Email</th>
+    <th scope="col">Notification</th>
+    <th scope="col" class="drive-link"></th>
+  </tr>
+  </thead>
+  <tbody *ngIf="!users.showLoader">
+  <tr *ngFor="let userObj of users.data">
+    <td>{{userObj.name}}</td>
+    <td>
+      <div class="d-flex align-items-center">
+        Otto
+      </div>
+    </td>
+    <td>
+      <div class="form-check form-switch form-control-lg">
+        <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+      </div>
+    </td>
+    <td class="drive-link">
+      <button class="btn btn-primary" routerLink="/drive"><i class="bi bi-folder"></i> Access Drive</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div *ngIf="users.showLoader" class="d-flex justify-content-center align-items-center">
+  <app-loader></app-loader>
+</div>
+

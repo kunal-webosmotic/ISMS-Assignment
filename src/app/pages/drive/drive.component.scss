@@ -1,0 +1,10 @@
+.folder {
+  border-radius: 10px;
+  border: 1px solid #dadce0;
+  padding: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lightgray;
+  }
+}
