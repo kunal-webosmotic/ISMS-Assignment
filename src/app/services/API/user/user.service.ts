@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '../../http/http.service';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class UserService {
    * Describe a users.
    * */
 
-  describeUsers() {
-    return this.httpService.get(`/users`);
+  getUsers() {
+    return this.httpService.get('getUsers');
   }
 }
