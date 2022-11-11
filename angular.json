@@ -11,7 +11,8 @@
         },
         "@schematics/angular:application": {
           "strict": true
-        }
+        },
+
       },
       "root": "",
       "sourceRoot": "src",
@@ -20,7 +21,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/driveTask",
+            "outputPath": "dist/ISMD",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",

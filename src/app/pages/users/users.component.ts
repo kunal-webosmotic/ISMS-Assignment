@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
   };
 
   constructor(private _userService: UserService,
-              private route: Router) {
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -23,32 +23,25 @@ export class UsersComponent implements OnInit {
   }
 
   async getUserList() {
-    //const userData: any = await this._userService.getUsers();
-    //console.log('userData--->', userData);
-    setTimeout(() => {
-      this.users.data = [
-        {
-          'id': 1,
-          'email': 'bhumika.webosmotic@gmail.com',
-          'channelId': 'a719d7ff-7357-4598-b14b-1d05fb757095',
-          'channelExpirationTime': 1668062755452,
-          'status': true
-        },
-        {
-          'id': 2,
-          'email': 'test@gmail.com',
-          'channelId': 'a719d7ff-7357-4598-b14b-1d05fb757096',
-          'channelExpirationTime': 1668062755453,
-          'status': true
-        }
-      ];
+    try {
+      this.users.data = await this._userService.getUsers();
       this.users.showLoader = false;
-    }, 5000);
+    } catch (e: any) {
+      console.log('e--->', e);
+      this.users.data = [];
+      this.users.showLoader = false;
+    }
   }
 
   accessDrive(userObj: any) {
-    console.log('userObj--->', userObj);
-    this.route.navigate(['drive'], {queryParams: {'email': userObj.email}});
+    this.router.navigate(['drive/' + userObj.email]);
+  }
+
+  async changeNotification(userObj: any) {
+    try {
+      await this._userService.updateNotification(userObj.email, userObj.status);
+    } catch (e: any) {
+    }
   }
 
 }

@@ -17,4 +17,11 @@ export class UserService {
   getUsers() {
     return this.httpService.get('getUsers');
   }
+
+  updateNotification(email: string, status: any) {
+    if (email === '' || status === '') {
+      throw new Error('Required parameter Email and Statu swas null or undefined when calling updateNotification.');
+    }
+    return this.httpService.post('updateNotificationStatus', {email, status});
+  }
 }

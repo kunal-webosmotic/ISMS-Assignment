@@ -36,34 +36,7 @@ export class DriveComponent implements OnInit {
   }
 
   async getDriveList() {
-    //let driveData: any = await this._driveService.getDriveList('test@gmail.com');
-    setTimeout(() => {
-      this.driveData.data = [
-        {
-          'id': 1,
-          'fileId': '121324234',
-          'fileName': 'test.doc',
-          'owner': 'bhumika.webosmoti@gmail.com',
-          'lastModifyingUser': 'test@gmail.com',
-          'lastModifiedDate': '2022-11-10 12:51:35',
-          'createdDate': '2022-11-10 12:51:35',
-          'type': 'file',
-          'iconUrl': 'www.httptest.com'
-        },
-        {
-          'id': 2,
-          'fileId': '121324234131231',
-          'fileName': 'abc.batch',
-          'owner': 'bhumika.webosmoti@gmail.com',
-          'lastModifyingUser': 'bhumika.webosmoti@gmail.com',
-          'lastModifiedDate': '2022-11-10 12:51:35',
-          'createdDate': '2022-11-10 12:51:35',
-          'type': 'file',
-          'iconUrl': 'www.httptest.com'
-        }
-      ];
-      this.driveData.showLoader = false;
-    }, 5000);
+    this.driveData.data = await this._driveService.getDriveList(this.userEmail);
+    this.driveData.showLoader = false;
   }
-
 }
