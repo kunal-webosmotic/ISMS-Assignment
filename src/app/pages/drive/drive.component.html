@@ -25,13 +25,12 @@
       <tr *ngFor="let driveObj of driveData.data">
         <td>
           <div class="col-lg-12">
-            <i class="bi bi-folder pe-2" *ngIf="driveObj.type === 'folder'"></i>
-            <i class="bi pe-2 bi-file-earmark-{{driveObj.type}}" *ngIf="driveObj.type !== 'folder'"></i>
+            <img src="{{driveObj.iconUrl}}" class="me-1">
             <span>{{driveObj.fileName}}</span>
           </div>
         </td>
         <td>{{driveObj.owner}}</td>
-        <td>{{driveObj.lastModifyingUser}}</td>
+        <td>{{driveObj.lastModifyingName}}</td>
         <td>{{driveObj.lastModifiedDate}}</td>
         <td>{{driveObj.createdDate}}</td>
         <td>{{driveObj.type}}</td>
