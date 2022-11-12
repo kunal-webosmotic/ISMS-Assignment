@@ -3,10 +3,10 @@
     <h3>Users</h3>
   </div>
   <div>
-    <!--<button class="btn btn-primary">
-      <i class="bi bi-person-plus"></i>
-      Add New User
-    </button>-->
+    <button class="btn btn-primary" (click)="logout()">
+      <i class="bi bi-box-arrow-right"></i>
+      Log out
+    </button>
   </div>
 </div>
 <table class="table table-striped user-list-table">
@@ -25,13 +25,16 @@
       </div>
     </td>
     <td>
-      <div class="form-check form-switch form-control-lg">
-        <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="userObj.status" (ngModelChange)="changeNotification(userObj)">
+      <div class="form-check form-switch form-control-lg"
+           [class.disabled]="userObj.email !== users.currentLoginUserEmail">
+        <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="userObj.status"
+               (ngModelChange)="changeNotification(userObj)">
         <label class="form-check-label" for="flexSwitchCheckDefault">{{userObj.status ? 'Enabled' : 'Disabled'}}</label>
       </div>
     </td>
     <td>
-      <div class="d-flex justify-content-end">
+      <div class="d-flex justify-content-end"
+           [class.disabled]="userObj.email !== users.currentLoginUserEmail">
         <button class="btn btn-primary" (click)="accessDrive(userObj)"><i class="bi bi-folder"></i> Access
           Drive
         </button>

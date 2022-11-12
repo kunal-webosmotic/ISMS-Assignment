@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/API/user/user.service';
 import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-users',
@@ -11,10 +12,12 @@ export class UsersComponent implements OnInit {
 
   users: any = {
     showLoader: true,
-    data: []
+    data: [],
+    currentLoginUserEmail: ''
   };
 
   constructor(private _userService: UserService,
+              private authService: AuthService,
               private router: Router) {
   }
 
@@ -24,7 +27,9 @@ export class UsersComponent implements OnInit {
 
   async getUserList() {
     try {
-      this.users.data = await this._userService.getUsers();
+      const data: any = await this._userService.getUsers();
+      this.users.data = data.users;
+      this.users.currentLoginUserEmail = data.email;
       this.users.showLoader = false;
     } catch (e: any) {
       console.log('e--->', e);
@@ -42,6 +47,11 @@ export class UsersComponent implements OnInit {
       await this._userService.updateNotification(userObj.email, userObj.status);
     } catch (e: any) {
     }
+  }
+
+  logout() {
+    this.authService.removeToken();
+    this.router.navigate(['login']);
   }
 
 }
