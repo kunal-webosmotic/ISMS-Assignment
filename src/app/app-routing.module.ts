@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'drive/:email',
     loadChildren: () => import('./pages/drive/drive.module').then(m => m.DriveModule),
   },
+  {
+    path: 'loginFails',
+    loadChildren: () => import('./pages/error-page/error-page.module').then(m => m.ErrorPageModule),
+  },
   {path: '**', redirectTo: '/login'},
 ];
 

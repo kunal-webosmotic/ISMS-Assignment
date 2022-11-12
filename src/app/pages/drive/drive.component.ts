@@ -36,8 +36,13 @@ export class DriveComponent implements OnInit {
   }
 
   async getDriveList() {
-    this.driveData.data = await this._driveService.getDriveList(this.userEmail);
-    this.driveData.showLoader = false;
+    try {
+      this.driveData.data = await this._driveService.getDriveList(this.userEmail);
+      this.driveData.showLoader = false;
+    } catch (e: any) {
+      this.driveData.data = [];
+      this.driveData.showLoader = false;
+    }
   }
 
   ngOnDestroy(): void {

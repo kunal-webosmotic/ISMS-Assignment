@@ -1,49 +1,61 @@
-<div class="d-flex justify-content-between mt-2">
-  <div>
-    <h3>Users</h3>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><strong> ISMS Assignment </strong></a>
   </div>
-  <div>
-    <button class="btn btn-primary" (click)="logout()">
-      <i class="bi bi-box-arrow-right"></i>
-      Log out
-    </button>
+</nav>
+<div class="container-fluid">
+  <div class="d-flex justify-content-between mt-2">
+    <div>
+      <h3>Users</h3>
+    </div>
+    <div>
+      <button class="btn btn-primary" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i>
+        Log out
+      </button>
+    </div>
   </div>
-</div>
-<table class="table table-striped user-list-table">
-  <thead>
-  <tr>
-    <th scope="col">Email</th>
-    <th scope="col">Notification</th>
-    <th scope="col" class="drive-link"></th>
-  </tr>
-  </thead>
-  <tbody *ngIf="!users.showLoader">
-  <tr *ngFor="let userObj of users.data">
-    <td>
-      <div class="d-flex align-items-center">
-        {{userObj.email}}
-      </div>
-    </td>
-    <td>
-      <div class="form-check form-switch form-control-lg"
-           [class.disabled]="userObj.email !== users.currentLoginUserEmail">
-        <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="userObj.status"
-               (ngModelChange)="changeNotification(userObj)">
-        <label class="form-check-label" for="flexSwitchCheckDefault">{{userObj.status ? 'Enabled' : 'Disabled'}}</label>
-      </div>
-    </td>
-    <td>
-      <div class="d-flex justify-content-end"
-           [class.disabled]="userObj.email !== users.currentLoginUserEmail">
-        <button class="btn btn-primary" (click)="accessDrive(userObj)"><i class="bi bi-folder"></i> Access
-          Drive
-        </button>
-      </div>
-    </td>
-  </tr>
-  </tbody>
-</table>
-<div *ngIf="users.showLoader" class="d-flex justify-content-center align-items-center">
-  <app-loader></app-loader>
+  <table class="table table-striped user-list-table">
+    <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Notification</th>
+      <th scope="col" class="drive-link"></th>
+    </tr>
+    </thead>
+    <tbody *ngIf="!users.showLoader">
+    <tr *ngFor="let userObj of users.data">
+      <td>
+        <div class="d-flex align-items-center">
+          {{userObj.email}}
+        </div>
+      </td>
+      <td>
+        <div class="form-check form-switch form-control-lg"
+             [class.disabled]="userObj.email !== users.currentLoginUserEmail">
+          <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="userObj.status"
+                 (ngModelChange)="changeNotification(userObj)">
+          <label class="form-check-label" for="flexSwitchCheckDefault">{{userObj.status ? 'Enabled' : 'Disabled'}}</label>
+        </div>
+      </td>
+      <td>
+        <div class="d-flex justify-content-end"
+             [class.disabled]="userObj.email !== users.currentLoginUserEmail">
+          <button class="btn btn-primary" (click)="accessDrive(userObj)"><i class="bi bi-folder"></i> Access
+            Drive
+          </button>
+        </div>
+      </td>
+    </tr>
+    <tr *ngIf="!users.showLoader && !users.data.length">
+      <td colspan="3">
+        <b>No users found...</b>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div *ngIf="users.showLoader" class="d-flex justify-content-center align-items-center">
+    <app-loader></app-loader>
+  </div>
 </div>
 

@@ -1,44 +1,56 @@
-<div class="col-lg-12 p-0 mt-2">
-  <div class="d-flex justify-content-between">
-    <div class="d-flex align-items-center">
-      <button class="btn btn-primary" routerLink="/users">
-        <i class="bi bi-arrow-left pe-2"></i> Back To Users
-      </button>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><strong> ISMS Assignment </strong></a>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="col-lg-12 p-0 mt-2">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex align-items-center">
+        <button class="btn btn-primary" routerLink="/users">
+          <i class="bi bi-arrow-left pe-2"></i> Back To Users
+        </button>
+      </div>
     </div>
-  </div>
-  <div class="mt-2">
-    <h3>Drive</h3>
-  </div>
-  <div class="mt-2">
-    <table class="table">
-      <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Owner</th>
-        <th scope="col">Last Modifying User</th>
-        <th scope="col">Last Modifying Date</th>
-        <th scope="col">Created Date</th>
-        <th scope="col">Type</th>
-      </tr>
-      </thead>
-      <tbody *ngIf="!driveData.showLoader">
-      <tr *ngFor="let driveObj of driveData.data">
-        <td>
-          <div class="col-lg-12">
-            <img src="{{driveObj.iconUrl}}" class="me-1">
-            <span>{{driveObj.fileName}}</span>
-          </div>
-        </td>
-        <td>{{driveObj.owner}}</td>
-        <td>{{driveObj.lastModifyingName}}</td>
-        <td>{{driveObj.lastModifiedDate}}</td>
-        <td>{{driveObj.createdDate}}</td>
-        <td>{{driveObj.type}}</td>
-      </tr>
-      </tbody>
-    </table>
-    <div class="d-flex justify-content-center" *ngIf="driveData.showLoader">
-      <app-loader></app-loader>
+    <div class="mt-2">
+      <h3>Drive</h3>
+    </div>
+    <div class="mt-2">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Owner</th>
+          <th scope="col">Last Modifying User</th>
+          <th scope="col">Last Modifying Date</th>
+          <th scope="col">Created Date</th>
+          <th scope="col">Type</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="!driveData.showLoader">
+        <tr *ngFor="let driveObj of driveData.data">
+          <td>
+            <div class="col-lg-12">
+              <img src="{{driveObj.iconUrl}}" class="me-1">
+              <span>{{driveObj.fileName}}</span>
+            </div>
+          </td>
+          <td>{{driveObj.owner}}</td>
+          <td>{{driveObj.lastModifyingName}}</td>
+          <td>{{driveObj.lastModifiedDate}}</td>
+          <td>{{driveObj.createdDate}}</td>
+          <td>{{driveObj.type}}</td>
+        </tr>
+        <tr *ngIf="!driveData.showLoader && !driveData.data.length">
+          <td colspan="6">
+            <b>No data found...</b>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-center" *ngIf="driveData.showLoader">
+        <app-loader></app-loader>
+      </div>
     </div>
   </div>
 </div>
